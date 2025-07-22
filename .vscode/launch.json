@@ -5,7 +5,7 @@
             "type": "java",
             "name": "Launch MainFX",
             "request": "launch",
-            "mainClass": "Main.MainFX", // Vamos criar essa classe logo abaixo
+            "mainClass": "loja.MainFX", // Vamos criar essa classe logo abaixo
             "vmArgs": "--module-path \"C:/java/javafx-sdk-24.0.2/lib\" --add-modules javafx.controls,javafx.fxml"
         }
     ]
