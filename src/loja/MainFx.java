@@ -9,17 +9,26 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.List;
 import loja.model.cliente.*;
+import loja.model.produto.Produto;
+import loja.model.produto.ProdutoFisico;
 import loja.ui.TelaCadastrarCliente;
+import loja.ui.TelaCadastrarProduto;
+import loja.ui.TelaCriarNota;
 import loja.ui.TelaListarClientes;
+import loja.model.nota.Nota;
+import loja.ui.TelaListarProdutos;
 
 
 public class MainFX extends Application{  
     private List<Cliente> clientesCadastrados = new ArrayList<>();
-
+    private List<Produto> produtosCadastrados = new ArrayList<>();
+    private List<Nota> notasCadastradas = new ArrayList<>();
     private void criarDados(){
-        clientesCadastrados.add(new PessoaFisica("1","Ana","Rua A","111234","111.222.333.444-55"));
+        clientesCadastrados.add(new PessoaFisica("1","Exemplo","Rua A","111234","111.222.333.444-55"));
+        //produtosCadastrados.add(new ProdutoFisico("1","Exemplo", 00 , 0));
     }
     public void start(Stage primaryStage){
+        
         criarDados();
         VBox layoutPrincipal = new VBox();
         //Layout principal 
@@ -45,17 +54,21 @@ public class MainFX extends Application{
             telaCadastro.display();
         });
         btnCadastrarProduto.setOnAction(e -> {
-            System.out.println("Cadastrar Produto");
+            TelaCadastrarProduto telaCadastro = new TelaCadastrarProduto(produtosCadastrados);
+            telaCadastro.display();
         });
         btnListarClientes.setOnAction(e -> {
             TelaListarClientes tela = new TelaListarClientes();
             tela.display(clientesCadastrados);
         });
         btnListarProdutos.setOnAction(e -> {
-            System.out.println("Listar produtos");
+            TelaListarProdutos telaProdutos = new TelaListarProdutos();
+            telaProdutos.display(produtosCadastrados);
         });
         btnCriarNota.setOnAction(e -> {
-            System.out.println("Criar notas");
+        // Cria a instância da tela, passando todas as listas necessárias
+        TelaCriarNota tela = new TelaCriarNota(clientesCadastrados, produtosCadastrados, notasCadastradas);
+        tela.display(); 
         });
         //Adicionando botões no layout
         layoutPrincipal.getChildren().addAll(
